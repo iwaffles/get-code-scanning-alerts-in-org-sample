@@ -17,8 +17,8 @@ const owner = args[0]
 console.log("org,repo,tool,rule_id,severity,open,created_at,closed_by,closed_at,url,closed_reason")
 octokit
   .paginate(octokit.repos.listForOrg, {
-      org: owner,
-    })
+    org: owner,
+  })
   .then(repositories =>
     pReduce(repositories, (repository) => {
       if (repository.archived) {
@@ -41,10 +41,11 @@ octokit
           delay(300);
         })
         .catch(error => {
-         // console.error(`Failed for ${owner}/${repo}\n${error.message}\n${error.documentation_url}`)
-        })        
+          console.error(error);
+          // console.error(`Failed for ${owner}/${repo}\n${error.message}\n${error.documentation_url}`)
+        });
     })
-    
+
   )
   .catch(error => {
     console.error(`Getting repositories for organization ${owner} failed.
