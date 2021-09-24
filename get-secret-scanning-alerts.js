@@ -25,7 +25,7 @@ async function go() {
   for await (const { data: secrets } of iterator) {
     for (const secret of secrets) {
       const repo = secret.repository.name;
-      console.log(`${org},${repo},${secret.url},${secret.state},${secret.secret_type},${secret.secret}`);
+      console.log(`${org},${repo},${secret.html_url},${secret.state},${secret.secret_type},${secret.secret}`);
     }
   }
 }
